@@ -111,7 +111,18 @@ const HomePage = () => {
   return (
     <div className="home-page-container">
       <div className="period-info-container">
-        {isSaved && (
+        {/* {isSaved && (
+          <>
+            <div className="period-info-title period-info-title-small">
+              ประจำเดือน:
+            </div>
+            <div className="period-info-title period-info-title-large">
+              วันที่ {currentDayOfPeriod}
+            </div>
+          </>
+        )} */}
+
+        {isSaved && currentDayOfPeriod <= 6 && (
           <>
             <div className="period-info-title period-info-title-small">
               ประจำเดือน:
@@ -122,13 +133,19 @@ const HomePage = () => {
           </>
         )}
 
-        {isSaved && nextPeriodDate && (
-          <div className="period-info-days">
-            ประจำเดือนจะมาอีก: {formatThaiDate(nextPeriodDate)}
-            <br></br>
-            จากวันนี้ถึงวันที่ประจำเดือนจะมาอีก เป็นเวลา: {calculateDaysUntilNextPeriod()} วัน
+        {isSaved && nextPeriodDate && currentDayOfPeriod > 6 && (
+          <div className="period-info-days" style={{ fontSize: '1.5rem', fontWeight: 'bold', textAlign: 'center', marginTop: '20px' }}>
+            ประจำเดือนจะมาอีกครั้งในวันที่ {formatThaiDate(nextPeriodDate)}
+            <br />
+            ครั้งถัดไปจะมาอีกใน {calculateDaysUntilNextPeriod()} วัน
           </div>
         )}
+
+
+
+       
+
+
       </div>
   
       <h3 className="calendar-title">ปฏิทินรอบเดือน</h3>
